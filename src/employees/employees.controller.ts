@@ -47,7 +47,11 @@ export class EmployeesController {
     },
   })
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Ip() ip: string, @Param('id') id: string) {
+    this.logger.log(
+      `Request for single employee \t ${ip}`,
+      EmployeesController.name,
+    )
     return this.employeesService.findOne(+id)
   }
 
